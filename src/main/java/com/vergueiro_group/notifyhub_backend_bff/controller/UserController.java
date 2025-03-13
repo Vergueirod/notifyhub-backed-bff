@@ -51,7 +51,7 @@ public class UserController {
     @ApiResponse(responseCode = "401", description = "Credenciais inválidas")
     public ResponseEntity<UserDTO> searchUserForEmail(
             @RequestParam("email") String email,
-            @RequestHeader("Authorization") String token) {
+            @RequestHeader(name="Authorization", required = false) String token) {
         return ResponseEntity.ok(userService.searchUserForEmail(email,token));
     }
 
@@ -64,7 +64,7 @@ public class UserController {
     @ApiResponse(responseCode = "401", description = "Credenciais inválidas")
     public ResponseEntity<Void> deleteUserForEmail(
             @PathVariable String email,
-            @RequestHeader("Authorization") String token) {
+            @RequestHeader(name="Authorization", required = false) String token) {
         userService.deleteUserForEmail(email,token);
         return ResponseEntity.ok().build();
     }
@@ -77,7 +77,7 @@ public class UserController {
     @ApiResponse(responseCode = "500", description = "Erro de servidor")
     @ApiResponse(responseCode = "401", description = "Credenciais inválidas")
     public ResponseEntity<UserDTO> updateDataUser(@RequestBody UserDTO dto,
-                                                  @RequestHeader("Authorization") String token){
+                                                  @RequestHeader(name="Authorization", required = false) String token){
         return ResponseEntity.ok(userService.updateDataUser(token, dto));
     }
 
@@ -90,7 +90,7 @@ public class UserController {
     @ApiResponse(responseCode = "401", description = "Credenciais inválidas")
     public ResponseEntity<EnderecoDTO> updateAddress(@RequestBody EnderecoDTO dto,
                                                      @RequestParam("id") UUID id,
-                                                     @RequestHeader("Authorization") String token){
+                                                     @RequestHeader(name="Authorization", required = false) String token){
         return ResponseEntity.ok(userService.updateAddress(dto, id, token));
     }
 
@@ -103,7 +103,7 @@ public class UserController {
     @ApiResponse(responseCode = "401", description = "Credenciais inválidas")
     public ResponseEntity<TelefoneDTO> updateTelephone(@RequestBody TelefoneDTO dto,
                                                        @RequestParam("id") UUID id,
-                                                       @RequestHeader("Authorization") String token){
+                                                       @RequestHeader(name="Authorization", required = false) String token){
         return ResponseEntity.ok(userService.updateTelephone(dto, id, token));
     }
 
@@ -115,7 +115,7 @@ public class UserController {
     @ApiResponse(responseCode = "500", description = "Erro de servidor")
     @ApiResponse(responseCode = "401", description = "Credenciais inválidas")
     public ResponseEntity<EnderecoDTO> addAddress(@RequestBody EnderecoDTO dto,
-                                                  @RequestHeader("Authorization") String token){
+                                                  @RequestHeader(name="Authorization", required = false) String token){
         return ResponseEntity.ok(userService.addAddress(token, dto));
     }
 
@@ -127,7 +127,7 @@ public class UserController {
     @ApiResponse(responseCode = "500", description = "Erro de servidor")
     @ApiResponse(responseCode = "401", description = "Credenciais inválidas")
     public ResponseEntity<TelefoneDTO> addPhone(@RequestBody TelefoneDTO dto,
-                                                @RequestHeader("Authorization") String token){
+                                                @RequestHeader(name="Authorization", required = false) String token){
         return ResponseEntity.ok(userService.addPhone(token, dto));
     }
 
